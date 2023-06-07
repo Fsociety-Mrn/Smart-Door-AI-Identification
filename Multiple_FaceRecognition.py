@@ -1,7 +1,7 @@
 import cv2
 import torch
 from facenet_pytorch import MTCNN
-from Face_Recognition.JoloRecognition import JoloRecognition
+from Jolo_Recognition.JoloRecognition import JoloRecognition
 # Load the pre-trained MTCNN model
 mtcnn = MTCNN()
 
@@ -41,7 +41,7 @@ for box in boxes:
     # c+=1
 
 # resize the image
-resized_image = cv2.resize(image, (800, 900))
+resized_image = cv2.resize(image, (500, 600))
 
 # Convert the image back to BGR format
 image = cv2.cvtColor(resized_image, cv2.COLOR_RGB2BGR)

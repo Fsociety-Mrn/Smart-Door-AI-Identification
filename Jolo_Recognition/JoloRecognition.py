@@ -80,16 +80,23 @@ class JoloRecognition:
     
     def Face_Multiple_Compare(self,face):
         
+        results = []
         
         boxes,probs = self.mtcnn.detect(face)
         
         for box in boxes:
             x1,y1,x2,y2 = int(box[0]), int(box[1]), int(box[2]), int(box[3])
             
+            # to face crop
             face_crop = face[y1:y2, x1:x2]
-            
-            with torch.no_grad():
-                self.facenet(face_crop).detach()
+
+            result = self.Face_Compare(face=face_crop)
+
+            # print("Result Name: ",result[0])
+            # print("Result box: ", box)
+            results.append((result[0],box))
+
+        return results
             
             
             
